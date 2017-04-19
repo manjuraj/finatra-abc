@@ -1,0 +1,52 @@
+.*
+!.gitignore
+
+# java
+
+*.class
+*.jar
+*.war
+*.ear
+
+# intellij
+
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# eclipse
+
+.classpath
+.project
+.settings/
+
+# tags
+tags
+.tags
+
+# sbt
+
+target/
+
+# log
+
+logs
+*.log
+
+# temporary
+*.swp
+*~
+*.bak
+*.orig
+*.pid
+*.DS_Store
+RUNNING_PID
+classpath.txt
+
+# packages
+*.tar
+*.tar.gz
+*.tar.bz2
+*.zip
+*.bz2
