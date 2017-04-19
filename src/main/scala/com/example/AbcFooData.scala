@@ -1,14 +1,13 @@
 package com.example
 
-import com.twitter.util.logging.Logger
+import com.twitter.logging.Logger
 
 class AbcFooData(in: String) {
-  val log = Logger(getClass)
+  private[this] val log = Logger(getClass)
 
   def out: String = {
     log.debug(s"foo out of $in")
     log.info(s"foo out of $in")
-    log.warn(s"foo out of $in")
     in
   }
 }
