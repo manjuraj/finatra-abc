@@ -1,25 +1,37 @@
-name := "finatra-abc"
-
-organization := "com.example"
-
-version := "1.0.0"
-
-scalaVersion := "2.11.8"
+lazy val root = Project(id = "finatra-abc", base = file("."))
+  .settings(
+    name := "finatra-abc",
+    version := "1.0.0",
+    organization := "com.example",
+    scalaVersion := "2.11.8",
+    libraryDependencies ++= List(
+      "com.typesafe" % "config" % versions.config,
+      "com.twitter" %% "finatra-http" % versions.finatra,
+      "ch.qos.logback" % "logback-classic" % versions.logback,
+      "org.scalaz" %% "scalaz-core" % versions.scalaz
+    ),
+    resolvers ++= {
+      val typesafeUrl = "http://repo.typesafe.com/typesafe"
+      List(
+        Resolver.mavenLocal,
+        "Typesafe Releases" at s"$typesafeUrl/releases/",
+        "Typesafe Snapshots" at s"$typesafeUrl/snapshots/"
+      )
+    },
+    scalacOptions ++= List(
+      "-deprecation",
+      "-feature",
+      "-unchecked",
+      "-Xfatal-warnings"
+    )
+  )
 
 lazy val versions = new {
-  val finatra = "2.9.0"
+  val config = "1.3.1"
+  val scalaz = "7.2.11"
+  val finatra = "2.12.0"
   val logback = "1.1.7"
 }
-
-resolvers ++= Seq(
-  Resolver.sonatypeRepo("releases")
-)
-
-scalacOptions ++= List(
-  "-deprecation",
-  "-feature",
-  "-unchecked"
-)
 
 assemblyMergeStrategy in assembly := {
   case "BUILD" => MergeStrategy.discard
@@ -28,8 +40,3 @@ assemblyMergeStrategy in assembly := {
 }
 
 Revolver.settings
-
-libraryDependencies ++= List(
-  "com.twitter" %% "finatra-http" % versions.finatra,
-  "ch.qos.logback" % "logback-classic" % versions.logback
-)
