@@ -8,12 +8,12 @@ import com.twitter.finatra.http.routing.HttpRouter
 object AbcServerMain extends AbcServer
 
 class AbcServer extends HttpServer {
-
   override def configureHttp(router: HttpRouter) {
     router
       .filter[LoggingMDCFilter[Request, Response]]
       .filter[TraceIdMDCFilter[Request, Response]]
       .filter[CommonFilters]
       .add[AbcController]
+      .add[HttpBinController]
   }
 }
